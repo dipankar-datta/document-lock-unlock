@@ -36,7 +36,9 @@ public class LockUnlockDocServiceImpl implements LockUnlockDocService {
     @PostConstruct
     public void init(){
         DO_MONITOR = true;
-        new Thread(() -> monitorLock()).start();
+        Thread monitorThread = new Thread(() -> monitorLock());
+        monitorThread.setName("LOCK_UNLOCK_MONITOR_THREAD");
+        monitorThread.start();
         LOGGER.info("Monitoring started");
     }
 
@@ -109,7 +111,7 @@ public class LockUnlockDocServiceImpl implements LockUnlockDocService {
                 return true;
             }
         } else {
-            System.out.println("Invalid document id");
+            LOGGER.error("Invalid document : " +  documentId);
         }
 
         return false;

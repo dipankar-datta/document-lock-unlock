@@ -6,16 +6,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/test")
+@RequestMapping("/")
 public class LockUnlockController {
 
     @Autowired
     LockUnlockDocService lockUnlockDocService;
 
-    @PutMapping
+    @PutMapping(path = "/lock")
     public boolean lock(@RequestBody LockRequest lockRequest){
-        System.out.println(lockRequest.toString());
         return lockUnlockDocService.lock(lockRequest.getUserId(), lockRequest.getDocumentId());
+    }
+
+    @PutMapping(path = "/unlock")
+    public boolean unlock(@RequestBody LockRequest lockRequest){
+        return lockUnlockDocService.unlock(lockRequest.getUserId(), lockRequest.getDocumentId());
     }
 
     @GetMapping
