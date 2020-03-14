@@ -1,4 +1,4 @@
-package com.datta.app;
+package com.datta;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

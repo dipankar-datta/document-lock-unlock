@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+    http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd ">
+
+
+    <!--       DOCUMENTS       -->
+    <changeSet id="0.0.1-1" author="Dipankar Datta">
+        <preConditions onFail="MARK_RAN">
+            <not><tableExists tableName="documents" /></not>
+        </preConditions>
+
+        <createTable tableName="documents">
+            <column name="id" autoIncrement="true" type="bigint(20)" >
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="title" type="varchar(100)"></column>
+            <column name="description" type="varchar(200)"></column>
+            <column name="locked_by" type="bigint(20)"></column>
+            <column name="lock_time" type="datetime"></column>
+        </createTable>
+    </changeSet>
+
+    <!--       USERS       -->
+    <changeSet id="0.0.1-2" author="Dipankar Datta">
+        <preConditions onFail="MARK_RAN">
+            <not><tableExists tableName="users" /></not>
+        </preConditions>
+
+        <createTable tableName="users">
+            <column name="id" autoIncrement="true" type="bigint(20)" >
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="first_Name" type="varchar(100)"></column>
+            <column name="last_name" type="varchar(100)"></column>
+        </createTable>
+    </changeSet>
+
+    <!--       LOGINS       -->
+    <changeSet id="0.0.1-3" author="Dipankar Datta">
+        <preConditions onFail="MARK_RAN">
+            <not><tableExists tableName="logins" /></not>
+        </preConditions>
+
+        <createTable tableName="logins">
+            <column name="id" autoIncrement="true" type="bigint(20)" >
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="user" type="bigint(20)"></column>
+            <column name="password" type="varchar(100)"></column>
+        </createTable>
+    </changeSet>
+
+    <!--       INSERT - USERS       -->
+    <changeSet id="0.0.1-4" author="Dipankar Datta">
+        <insert tableName="users">
+            <column name="id" valueNumeric="1"/>
+            <column name="first_name" value="Clark"/>
+            <column name="last_name" value="Kent"/>
+        </insert>
+        <insert tableName="users">
+            <column name="id" valueNumeric="2"/>
+            <column name="first_name" value="Peter"/>
+            <column name="last_name" value="Parker"/>
+        </insert>
+        <insert tableName="users">
+            <column name="id" valueNumeric="3"/>
+            <column name="first_name" value="Tony"/>
+            <column name="last_name" value="Stark"/>
+        </insert>
+        <insert tableName="users">
+            <column name="id" valueNumeric="4"/>
+            <column name="first_name" value="Bruce"/>
+            <column name="last_name" value="Wayne"/>
+        </insert>
+        <insert tableName="users">
+            <column name="id" valueNumeric="5"/>
+            <column name="first_name" value="Bruce"/>
+            <column name="last_name" value="Banner"/>
+        </insert>
+    </changeSet>
+
+    <!--       INSERT - DOCUMENTS       -->
+    <changeSet id="0.0.1-5" author="Dipankar Datta">
+        <insert tableName="documents">
+            <column name="id" valueNumeric="1"/>
+            <column name="title" value="Bat Man"/>
+            <column name="description" value="This movie is based on Bat man. Great movie"/>
+        </insert>
+        <insert tableName="documents">
+            <column name="id" valueNumeric="2"/>
+            <column name="title" value="Spider Man"/>
+            <column name="description" value="This movie is based on Spider man. Great movie. Must watch"/>
+        </insert>
+        <insert tableName="documents">
+            <column name="id" valueNumeric="3"/>
+            <column name="title" value="The Hulk"/>
+            <column name="description" value="This movie is based on Hulk. Great Action."/>
+        </insert>
+        <insert tableName="documents">
+            <column name="id" valueNumeric="4"/>
+            <column name="title" value="Iron Man"/>
+            <column name="description" value="This movie is based on Iron Man. Nice one."/>
+        </insert>
+        <insert tableName="documents">
+            <column name="id" valueNumeric="5"/>
+            <column name="title" value="The Avengers"/>
+            <column name="description" value="This movie is based on many super heroes. Must watch."/>
+        </insert>
+    </changeSet>
+
+    <!--       INSERT - LOGINS       -->
+    <changeSet id="0.0.1-6" author="Dipankar Datta">
+        <insert tableName="logins">
+            <column name="id" valueNumeric="1"/>
+            <column name="user" value="1"/>
+            <column name="password" value="111"/>
+        </insert>
+        <insert tableName="logins">
+            <column name="id" valueNumeric="2"/>
+            <column name="user" value="2"/>
+            <column name="password" value="222"/>
+        </insert>
+        <insert tableName="logins">
+            <column name="id" valueNumeric="3"/>
+            <column name="user" value="3"/>
+            <column name="password" value="333"/>
+        </insert>
+        <insert tableName="logins">
+            <column name="id" valueNumeric="4"/>
+            <column name="user" value="4"/>
+            <column name="password" value="444"/>
+        </insert>
+        <insert tableName="logins">
+            <column name="id" valueNumeric="5"/>
+            <column name="user" value="5"/>
+            <column name="password" value="555"/>
+        </insert>
+    </changeSet>
+
+
+</databaseChangeLog>
